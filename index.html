@@ -1,0 +1,138 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HUMBLE LION COLLECTION</title><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
+body{background:#f5f1e8}
+.header{background:#080808;padding:10px 0 12px;border-bottom:2.5px solid #C9A86A;position:sticky;top:0;z-index:999;display:flex;align-items:center;justify-content:center;gap:14px;cursor:pointer}
+.lion-circle{width:52px;height:52px;border-radius:50%;border:1.8px solid #C9A86A;background:#0a0a0a;display:flex;align-items:center;justify-content:center}
+.hl-main{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;line-height:0.8;background:linear-gradient(180deg,#fff8dc,#e8c87a,#C9A86A);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hl-sub{font-size:8px;letter-spacing:5px;color:#C9A86A;font-weight:700;margin-top:4px}
+.search-wrap{padding:14px;background:#f5f1e8;position:sticky;top:76px;z-index:998}
+.search-wrap input{width:100%;padding:14px 18px;border-radius:14px;border:1px solid #e8dfc8;background:#fff;outline:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px 14px 100px}
+.card{background:#fff;border-radius:18px;overflow:hidden;border:1px solid #f0e6d3;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.card-img{height:195px;background:#fff}.card-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.card-info{padding:12px}.card-name{font-size:13px;font-weight:800}.card-price{font-size:13px;font-weight:800;margin-top:6px}
+/* 2. GOLD SLASH */
+.card-old{font-size:11px;color:#C9A86A;text-decoration:line-through;margin-left:6px;font-weight:700;opacity:0.9}
+.card-btn{width:100%;margin-top:10px;padding:11px;background:#111;color:#C9A86A;border-radius:12px;border:none;font-weight:800;font-size:11px;cursor:pointer}
+
+/* 3. WHATSAPP FLOATING WITH LOGO */
+.wa-float{position:fixed;bottom:22px;right:18px;z-index:9999;background:#22c55e;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(34,197,94,0.4);cursor:pointer;border:2px solid #fff}
+.wa-float span{font-size:28px}
+.wa-float::before{content:'HL';position:absolute;top:-6px;right:-6px;background:#111;color:#C9A86A;font-size:8px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #C9A86A;font-family:'Playfair Display',serif}
+
+.admin{position:fixed;inset:0;background:#f5f1e8;display:none;z-index:20000;overflow:auto}.admin.show{display:block}
+.admin-header{background:#0e0e0e;border-radius:18px;margin:14px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.admin-header b{color:#C9A86A;font-size:16px;font-weight:900}.close-pill{background:#fff;color:#111;border:none;border-radius:22px;padding:8px 18px;font-weight:800;font-size:13px;cursor:pointer}
+.admin-card{background:#fff;border-radius:22px;margin:0 14px 14px;padding:16px;border:1px solid #f0e6d3}
+.input-field{width:100%;padding:16px 18px;border-radius:14px;border:1px solid #ece3cf;background:#fdfbf3;outline:none;font-size:15px;font-weight:600;margin-bottom:14px}
+.input-field.auto{border-color:#22c55e;background:#e6f9ec}
+.dashed-box{border:2px dashed #d6b07a;border-radius:16px;background:#fdfbf3;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;min-height:90px;position:relative;margin-bottom:14px;cursor:pointer}
+.dashed-box input{position:absolute;inset:0;opacity:0;width:100%;height:100%;z-index:5;cursor:pointer}
+.dashed-left{font-weight:800;font-size:15px;color:#0a8a3c;z-index:1}.dashed-thumb{width:72px;height:72px;border-radius:12px;object-fit:cover;display:none;border:1px solid #eee;z-index:1}.dashed-thumb.show{display:block}
+.btn-gold{width:100%;padding:16px;background:linear-gradient(135deg,#b8974e,#8c6d2f);color:#111;border:none;border-radius:14px;font-weight:900;font-size:15px;cursor:pointer;margin-bottom:12px}.btn-gold:disabled{opacity:.4}
+.prod-list{padding:0 14px 20px}.prod-item{display:flex;gap:12px;align-items:center;background:#fff;padding:12px 14px;border-radius:14px;margin-bottom:10px;border:1px solid #f0e6d3}
+.prod-item img{width:52px;height:52px;border-radius:10px;object-fit:cover}.prod-del{width:36px;height:36px;background:#ffe8e8;color:#ff3b3b;border:none;border-radius:10px;font-weight:900;cursor:pointer}
+.status{font-size:12px;font-weight:700;padding:10px;text-align:center;display:none;border-radius:10px;margin-bottom:10px}.status.show{display:block}
+.ai-badge{font-size:11px;background:#0a8a3c;color:#fff;padding:4px 8px;border-radius:8px;margin-left:8px;display:none}.ai-badge.show{display:inline-block}
+#pop{position:fixed;inset:0;background:#f5f1e8;display:none;z-index:10000;flex-direction:column;overflow:auto}#pop.show{display:flex}
+.pop-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:2}
+.pop-img{width:100%;height:48vh;background:#faf7f0;display:flex;align-items:center;justify-content:center}
+.pop-img img{width:100%;height:100%;object-fit:contain}
+.pop-info{background:#fff;border-radius:22px 22px 0 0;margin-top:-12px;padding:20px 18px;flex:1}
+.p-name{font-size:22px;font-weight:900}.p-price{font-size:22px;font-weight:900}.p-old{font-size:14px;color:#C9A86A;text-decoration:line-through}
+.label{font-size:13px;font-weight:800;margin:18px 0 10px}.sizes{display:flex;gap:8px;flex-wrap:wrap}.size-btn{padding:10px 18px;border-radius:12px;border:1px solid #e5e5e5;background:#f5f1e8;font-weight:700;font-size:13px;cursor:pointer;min-width:52px}.size-btn.active{background:#111;color:#C9A86A;border-color:#111}
+.order-btn{width:100%;margin-top:18px;padding:16px;background:#22c55e;color:#fff;border:none;border-radius:14px;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px}
+.small-note{text-align:center;font-size:10px;color:#999;margin-top:8px}
+</style></head><body>
+
+<div class="header" id="logo">
+  <div class="lion-circle">
+    <svg viewBox="0 0 100 100" width="38" height="38" fill="none" stroke="#C9A86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="50" cy="38" r="14" stroke="#e8c87a" stroke-width="2.2"/>
+      <path d="M36 32 Q28 28 30 20 Q34 26 40 26"/><path d="M64 32 Q72 28 70 20 Q66 26 60 26"/>
+      <path d="M38 62 Q30 55 26 40 Q28 52 36 60"/><path d="M62 62 Q70 55 74 40 Q72 52 64 60"/>
+      <path d="M44 42 Q50 44 56 42"/><path d="M42 46 L46 50 M58 46 L54 50"/><path d="M46 56 Q50 60 54 56"/><path d="M32 68 Q50 80 68 68"/><path d="M38 70 Q50 78 62 70"/>
+    </svg>
+  </div>
+  <div><div class="hl-main">HL</div><div class="hl-sub">HUMBLE LION COLLECTION</div></div>
+</div>
+
+<div class="search-wrap"><input id="s" placeholder="Search Kaftan, Polo, Timberland..."></div>
+<div class="grid" id="g"></div>
+
+<!-- 3. WHATSAPP FLOATING -->
+<div class="wa-float" onclick="window.open('https://wa.me/233246419885?text=Hi%20Humble%20Lion%20Collection%20🦁%20I%20want%20to%20order')"><span>💬</span></div>
+
+<div id="pop">
+<div class="pop-head"><button style="width:36px;height:36px;border-radius:50%;background:#f5f1e8;border:none" onclick="pop.classList.remove('show')">←</button><h2>Product Details</h2><button style="width:36px;height:36px;border-radius:50%;background:#f5f1e8;border:none">♡</button></div>
+<div class="pop-img"><img id="pImg"></div>
+<div class="pop-info">
+<div style="font-size:11px;letter-spacing:1px;color:#b8974e;font-weight:800">HUMBLE LION COLLECTION</div>
+<div class="p-name" id="pName"></div>
+<div style="display:flex;gap:8px;margin:10px 0"><div class="p-price" id="pPrice"></div><div class="p-old" id="pOld"></div></div>
+<div class="label">Size:</div><div class="sizes" id="sizeRow"></div>
+<div class="label">Description</div><div id="pDesc" style="font-size:13px;color:#555;line-height:1.6">Premium quality product crafted for style and comfort.</div>
+<button class="order-btn" id="orderBtn">Order on WhatsApp 🦁</button>
+<div class="small-note">0246419885 • Click floating button to chat</div>
+</div></div>
+
+<div class="admin" id="adm">
+<div class="admin-header"><b id="count">ADMIN</b><button class="close-pill" onclick="adm.classList.remove('show')">CLOSE</button></div>
+<div class="admin-card">
+<div style="display:flex;align-items:center;margin-bottom:4px"><div style="font-size:11px;color:#999;font-weight:700">PRODUCT NAME</div><span class="ai-badge" id="aiBadge">✨ Auto Detected</span></div>
+<input class="input-field" id="a1" placeholder="Product name">
+<input class="input-field" id="a2" placeholder="Price e.g GHS 350">
+<div class="dashed-box"><input type="file" id="fileIn" accept="image/*"><div class="dashed-left" id="dashLeft">Tap to add image</div><img class="dashed-thumb" id="thumb"></div>
+<input class="input-field" id="a3" placeholder="Or paste image link">
+<input class="input-field" id="a4" placeholder="Type e.g Kaftan, Jeans, Polo">
+<div class="status" id="st"></div>
+<button class="btn-gold" id="addBtn" onclick="addP()">ADD PRODUCT</button>
+</div><div class="prod-list" id="list"></div></div>
+
+<script>
+var def=[{name:"Two-Piece Set",price:"GHS 200",cat:"Two-Piece",imgs:["https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg"]},{name:"Kaftan Premium",price:"GHS 350",cat:"Kaftan",imgs:["https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg"]},{name:"Polo Shirt",price:"GHS 180",cat:"Polo",imgs:["https://images.pexels.com/photos/4066290/pexels-photo-4066290.jpeg"]},{name:"Jeans",price:"GHS 250",cat:"Jeans",imgs:["https://images.pexels.com/photos/1082529/pexels-photo-1082529.jpeg"]}];
+var products=JSON.parse(localStorage.getItem('HUMBLE_123_FINAL')||'null')||def;var tmp=[],tmpReady=false;
+function save(){localStorage.setItem('HUMBLE_123_FINAL',JSON.stringify(products))}
+function build(list){var el=g;el.innerHTML='';(list||products).forEach((p,i)=>{var idx=products.indexOf(p);var old='GHS '+(parseInt(p.price.replace(/\D/g,''))+100);el.innerHTML+='<div class=card><div class=card-img><img src="'+p.imgs[0]+'"></div><div class=card-info><div class=card-name>'+p.name+'</div><div class=card-price>'+p.price+'<span class=card-old>'+old+'</span></div><button class=card-btn onclick="openP('+idx+')">VIEW DETAILS</button></div></div>';});save();}
+function getSizes(c){c=(c||'').toLowerCase();if(c.includes('two')||c.includes('set'))return['M','L','XL','XXL'];if(c.includes('jean'))return['30','32','34','36','38'];if(c.includes('shoe')||c.includes('boot'))return['40','41','42','43','44'];return['M','L','XL','XXL'];}
+function openP(i){var p=products[i];pImg.src=p.imgs[0];pName.innerText=p.name;pPrice.innerText=p.price;pOld.innerText='GHS '+(parseInt(p.price.replace(/\D/g,''))+100);pDesc.innerText=p.name.includes('Two-Piece')?'Premium Two-Piece Set - Shirt + Trouser. Perfect fit, modern style for everyday luxury in Accra.':'High-quality '+p.name+' crafted for comfort and style.';var sizes=getSizes(p.cat);sizeRow.innerHTML='';sizes.forEach((s,idx)=>{sizeRow.innerHTML+='<button class="size-btn '+(idx==2?'active':'')+'" onclick="document.querySelectorAll(\'.size-btn\').forEach(b=>b.classList.remove(\'active\'));this.classList.add(\'active\')">'+s+'</button>'});orderBtn.onclick=function(){var sz=document.querySelector('.size-btn.active')?.innerText||'L';window.open('https://wa.me/233246419885?text=Hi%20HL%20🦁%20I%20want%20'+encodeURIComponent(p.name+' '+p.price+' Size:'+sz))};pop.classList.add('show')}
+var fileIn=document.getElementById('fileIn'),thumb=document.getElementById('thumb'),dashLeft=document.getElementById('dashLeft'),st=document.getElementById('st'),addBtn=document.getElementById('addBtn');
+fileIn.addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;tmpReady=false;var url=URL.createObjectURL(f);thumb.src=url;thumb.classList.add('show');dashLeft.innerHTML='✅ Detecting...';st.className='status show';st.style.display='block';st.style.background='#fff8e0';st.innerText='⚡ Instant preview!';addBtn.disabled=true;autoDetectProduct(f,url);var r=new FileReader();r.onload=function(ev){tmp=[ev.target.result];tmpReady=true;addBtn.disabled=false;dashLeft.innerHTML='✅ '+(a1.value||'Ready');st.innerHTML='✅ Ready! Tap ADD';st.style.background='#e6f9ec'};r.readAsDataURL(f)});
+/* 1. TWO-PIECE SET AUTO-DETECT */
+function autoDetectProduct(file, thumbURL){
+ var fn=file.name.toLowerCase();
+ if(fn.includes('two')||fn.includes('set')||fn.includes('piece')){applyGuess({name:'Two-Piece Set',cat:'Two-Piece',price:'GHS 200'});return}
+ if(fn.includes('jean')||fn.includes('denim')){applyGuess({name:'Jeans',cat:'Jeans',price:'GHS 250'});return}
+ if(fn.includes('kaftan')){applyGuess({name:'Kaftan Premium',cat:'Kaftan',price:'GHS 350'});return}
+ if(fn.includes('timber')||fn.includes('boot')){applyGuess({name:'Timberland Premium Boot',cat:'Shoes',price:'GHS 450'});return}
+ if(fn.includes('polo')){applyGuess({name:'Polo Shirt',cat:'Polo',price:'GHS 180'});return}
+ var img=new Image();img.src=thumbURL;
+ img.onload=function(){
+  var canvas=document.createElement('canvas');canvas.width=120;canvas.height=120;var ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,120,120);
+  var data=ctx.getImageData(10,10,100,100).data;var r=0,g=0,b=0,count=0,grayPixels=0;
+  for(var i=0;i<data.length;i+=4){
+   var pr=data[i],pg=data[i+1],pb=data[i+2];
+   if(pr>235&&pg>235&&pb>235)continue;
+   if(pr>200&&pg>200&&pb>200&&Math.abs(pr-pg)<10)continue;
+   r+=pr;g+=pg;b+=pb;count++;
+   if(Math.abs(pr-pg)<15 && Math.abs(pg-pb)<15 && pr>70 && pr<160) grayPixels++;
+  }
+  if(count<50){applyGuess({name:'Polo Shirt',cat:'Polo',price:'GHS 180'});return}
+  r/=count;g/=count;b/=count;
+  var grayRatio=grayPixels/count;
+  var guess;
+  if(grayRatio>0.25 || (r>85&&r<150&&g>85&&g<150&&b>85&&b<155&&Math.abs(r-g)<20)){guess={name:'Two-Piece Set',cat:'Two-Piece',price:'GHS 200'}}
+  else if(b>r+15&&b>90&&r<170){guess={name:'Jeans',cat:'Jeans',price:'GHS 250'}}
+  else if(r>90&&r<195&&g>75&&g<165&&b<135&&r>g){guess={name:'Kaftan Premium',cat:'Kaftan',price:'GHS 350'}}
+  else if(r<80&&g<80&&b<80){guess={name:'Timberland Boot',cat:'Shoes',price:'GHS 450'}}
+  else{guess={name:'Shirt',cat:'Shirt',price:'GHS 200'}}
+  applyGuess(guess)
+ }
+}
+function applyGuess(guess){a1.value=guess.name;a2.value=guess.price;a4.value=guess.cat;a1.classList.add('auto');a2.classList.add('auto');a4.classList.add('auto');aiBadge.classList.add('show');st.className='status show';st.style.display='block';st.style.background='#e6f9ec';st.style.color='#0a8a3c';st.innerHTML='✨ Auto detected: <b>'+guess.name+'</b> • '+guess.cat}
+function addP(){var n=a1.value.trim()||'New Product';var pr=a2.value.trim()||'GHS 250';var link=a3.value.trim();var cat=a4.value.trim()||'General';if(link&&!tmpReady){tmp=[link];tmpReady=true}if(!tmpReady||!tmp.length){st.className='status show';st.style.display='block';st.style.background='#ffe8e8';st.style.color='#ff3b3b';st.innerText='❌ Add image first';return}if(!pr.includes('GHS'))pr='GHS '+pr.replace(/\D/g,'');products.unshift({name:n,price:pr,cat:cat,imgs:tmp.slice()});save();build();render();a1.value='';a2.value='';a3.value='';a4.value='';tmp=[];tmpReady=false;thumb.classList.remove('show');thumb.src='';dashLeft.innerHTML='Tap to add image';fileIn.value='';aiBadge.classList.remove('show');st.innerText='✅ Added!'}
+function render(){list.innerHTML='';products.forEach((p,i)=>{list.innerHTML+='<div class=prod-item><img src="'+p.imgs[0]+'"><div style="flex:1"><div style="font-size:13px;font-weight:800">'+p.name+'</div><div style="color:#888;font-size:11px">'+p.price+' • '+(p.cat||'')+'</div></div><button class=prod-del onclick="products.splice('+i+',1);save();build();render()">✕</button></div>'});}
+s.addEventListener('input',()=>{var q=s.value.toLowerCase();build(products.filter(p=>p.name.toLowerCase().includes(q)))});
+var taps=0;logo.addEventListener('click',()=>{taps++;if(taps>=5){adm.classList.add('show');render();taps=0}setTimeout(()=>taps=0,2000);});
+build();render();
+</script></body></html>
